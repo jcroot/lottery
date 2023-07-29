@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import './index.css';
+import Input from "./components/Input";
+import {useEffect} from "react";
+import Register from "./components/Register";
+import Roulette from "./components/Roulette";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    useEffect(() => {
+        document.body.classList.add("h-full");
+        document.body.classList.add("bg-gray-50");
+        return () => {
+            document.body.classList.remove("h-full");
+        };
+    }, []);
+
+    return (
+        <div className="App">
+            <Input />
+            <Register />
+            <Roulette />
+        </div>
+    );
 }
 
 export default App;
