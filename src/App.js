@@ -3,6 +3,7 @@ import Input from "./components/Input";
 import {useEffect} from "react";
 import Register from "./components/Register";
 import Roulette from "./components/Roulette";
+import {Route, Routes} from "react-router-dom";
 
 function App() {
 
@@ -15,11 +16,13 @@ function App() {
     }, []);
 
     return (
-        <div className="App">
-            <Input />
-            <Register />
-            <Roulette />
-        </div>
+        <>
+            <Routes>
+                <Route path="/" element={<Input />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/play" element={<Roulette />} />
+            </Routes>
+        </>
     );
 }
 

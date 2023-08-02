@@ -1,12 +1,14 @@
 import {useState} from "react";
 import {prospectByTicket} from "../shared/utils/fetchapi";
 import Alert from "./Alert";
+import {useNavigate} from "react-router-dom";
 
 export default function Input() {
 
     const [ticket, setTicket] = useState('');
     const [color, setColor] = useState('red');
     const [message, setMessage] = useState('');
+    const navidate = useNavigate();
 
     const onHandleChangeNumeric = (e) => {
         const value = e.target.value.replace(/\D/g, "");
@@ -17,17 +19,18 @@ export default function Input() {
         e.preventDefault();
         const response = await prospectByTicket(ticket);
         if (response.status){
-            console.log("OK");
+            navidate('/register', {state: {data: response.data}})
         }else{
             setColor('red');
             setMessage(response.message)
+            setTicket('')
         }
     }
 
     return (
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
 
-            <Alert color={color} message={message} />
+            {message && <Alert color={color} message={message} />}
 
             <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
                 <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
