@@ -8,7 +8,7 @@ export default function Input() {
     const [ticket, setTicket] = useState('');
     const [color, setColor] = useState('red');
     const [message, setMessage] = useState('');
-    const navidate = useNavigate();
+    const navigate = useNavigate();
 
     const onHandleChangeNumeric = (e) => {
         const value = e.target.value.replace(/\D/g, "");
@@ -19,7 +19,7 @@ export default function Input() {
         e.preventDefault();
         const response = await prospectByTicket(ticket);
         if (response.status){
-            navidate('/register', {state: {data: response.data}})
+            navigate('/register', {state: {data: response.data}})
         }else{
             setColor('red');
             setMessage(response.message)

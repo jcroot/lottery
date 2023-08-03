@@ -19,13 +19,16 @@ export const prospectByTicket = (ticket_number) => {
 
 export const contestRightNow = (payload) => {
     const apiURL = `${ApiManagement}/lottery/contest-right-now`;
+    const config = {
+        headers: { 'Content-Type': 'application/json' },
+    }
 
     return axios
-        .post(apiURL, payload)
+        .post(apiURL, payload, config)
         .then((res) => {
             return res.data;
         })
         .catch((err) => {
-            console.error(err);
+            return err.response.data;
         });
 }
